@@ -1,0 +1,10 @@
+# Sandbox para tarea_ctf.py. Inspect crea un contenedor "default" por muestra y
+# ejecuta allí las llamadas a la herramienta bash.
+services:
+  default:
+    image: python:3.12-bookworm
+    init: true
+    command: tail -f /dev/null   # mantener el contenedor vivo
+    network_mode: none           # sin red: el agente no puede salir a internet
+    cpus: 1.0
+    mem_limit: 0.5gb

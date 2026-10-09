@@ -555,7 +555,7 @@ from string import Template
 import anthropic
 
 # Fija y registra la versión exacta del juez: si cambia, tu métrica cambia.
-MODEL = os.environ.get("JUDGE_MODEL", "claude-opus-5-5")
+MODEL = os.environ["JUDGE_MODEL"]       # id exacto del modelo juez, p. ej. exportado en tu CI
 client = anthropic.Anthropic()          # lee la credencial del entorno
 VEREDICTOS = {"si", "no", "desconocido"}
 
