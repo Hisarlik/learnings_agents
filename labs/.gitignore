@@ -1,0 +1,7 @@
+# Ficheros generados por los laboratorios
+resultados/
+__pycache__/
+*.pyc
+.venv/
+# Logs de Inspect AI (laboratorio 5)
+logs/

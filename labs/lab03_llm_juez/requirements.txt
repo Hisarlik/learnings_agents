@@ -1,0 +1,2 @@
+# Opcional: solo para usar un juez LLM real (sin esto, calibrar.py usa el juez simulado).
+anthropic

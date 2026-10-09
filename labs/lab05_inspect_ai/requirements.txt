@@ -1,0 +1,3 @@
+# Laboratorio 5 (opcional): requiere Docker y una API key del proveedor del modelo.
+inspect-ai
+anthropic
