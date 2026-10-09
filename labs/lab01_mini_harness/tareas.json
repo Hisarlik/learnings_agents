@@ -1,0 +1,288 @@
+[
+  {
+    "id": "arit-01",
+    "tipo": "aritmetica",
+    "dificultad": 0.2,
+    "enunciado": "Una papelería vende cuadernos a 2,50 € y bolígrafos a 0,80 €. Ana compra 4 cuadernos y 5 bolígrafos. ¿Cuánto paga en total, en euros? Responde solo con el número.",
+    "solucion": {"acciones": [], "respuesta": "14"},
+    "errores": [
+      {"modo": "respuesta_incorrecta", "peso": 3, "respuesta": "10.8"},
+      {"modo": "formato", "peso": 1, "respuesta": "14 €"}
+    ],
+    "graders": [
+      {"tipo": "numerico", "esperado": 14, "tolerancia": 0.01}
+    ]
+  },
+  {
+    "id": "arit-02",
+    "tipo": "aritmetica",
+    "dificultad": 0.4,
+    "enunciado": "Un tren sale a las 9:40 y llega a las 13:15 del mismo día. ¿Cuántos minutos dura el viaje? Responde solo con el número.",
+    "solucion": {"acciones": [], "respuesta": "215"},
+    "errores": [
+      {"modo": "respuesta_incorrecta", "peso": 3, "respuesta": "225"},
+      {"modo": "formato", "peso": 2, "respuesta": "3h 35min"}
+    ],
+    "graders": [
+      {"tipo": "numerico", "esperado": 215, "tolerancia": 0}
+    ]
+  },
+  {
+    "id": "arit-03",
+    "tipo": "aritmetica",
+    "dificultad": 0.6,
+    "enunciado": "Un portátil cuesta 800 €. Se aplica un descuento del 15 % y, sobre el precio rebajado, un IVA del 21 %. ¿Cuál es el precio final en euros? Responde solo con el número.",
+    "solucion": {"acciones": [], "respuesta": "822.8"},
+    "errores": [
+      {"modo": "respuesta_incorrecta", "peso": 3, "respuesta": "848"},
+      {"modo": "formato", "peso": 1, "respuesta": "822,80 €"}
+    ],
+    "graders": [
+      {"tipo": "numerico", "esperado": 822.8, "tolerancia": 0.01}
+    ]
+  },
+  {
+    "id": "txt-01",
+    "tipo": "texto",
+    "dificultad": 0.1,
+    "enunciado": "Convierte 'Fecha De Entrega Prevista' a snake_case. Responde solo con el identificador.",
+    "solucion": {"acciones": [], "respuesta": "fecha_de_entrega_prevista"},
+    "errores": [
+      {"modo": "formato", "peso": 2, "respuesta": "`fecha_de_entrega_prevista`"},
+      {"modo": "respuesta_incorrecta", "peso": 1, "respuesta": "Fecha_De_Entrega_Prevista"}
+    ],
+    "graders": [
+      {"tipo": "exacto", "esperado": "fecha_de_entrega_prevista", "normalizar": ["espacios"]}
+    ]
+  },
+  {
+    "id": "txt-02",
+    "tipo": "texto",
+    "dificultad": 0.3,
+    "enunciado": "Normaliza el nombre '  josé  GARCÍA lópez ' a la forma 'Nombre Apellido1 Apellido2': mayúscula inicial, resto en minúsculas, conservando las tildes y con espacios simples. Responde solo con el nombre.",
+    "solucion": {"acciones": [], "respuesta": "José García López"},
+    "errores": [
+      {"modo": "respuesta_incorrecta", "peso": 3, "respuesta": "Jose Garcia Lopez"},
+      {"modo": "formato", "peso": 1, "respuesta": "Nombre normalizado: José García López"}
+    ],
+    "graders": [
+      {"tipo": "exacto", "esperado": "José García López", "normalizar": []}
+    ]
+  },
+  {
+    "id": "json-01",
+    "tipo": "json",
+    "dificultad": 0.3,
+    "enunciado": "Extrae a JSON con las claves nombre (texto), edad (entero) y ciudad (texto): 'Me llamo Lucía, tengo 34 años y vivo en Valencia.' Responde solo con el JSON.",
+    "solucion": {"acciones": [], "respuesta": "{\"nombre\": \"Lucía\", \"edad\": 34, \"ciudad\": \"Valencia\"}"},
+    "errores": [
+      {"modo": "formato", "peso": 3, "respuesta": "```json\n{\"nombre\": \"Lucía\", \"edad\": 34, \"ciudad\": \"Valencia\"}\n```"},
+      {"modo": "respuesta_incorrecta", "peso": 2, "respuesta": "{\"nombre\": \"Lucía\", \"edad\": \"34\", \"ciudad\": \"Valencia\"}"}
+    ],
+    "graders": [
+      {"tipo": "json_esquema",
+       "campos": {"nombre": "str", "edad": "int", "ciudad": "str"},
+       "valores": {"nombre": "Lucía", "edad": 34, "ciudad": "Valencia"},
+       "permitir_adicionales": false}
+    ]
+  },
+  {
+    "id": "fecha-01",
+    "tipo": "fecha",
+    "dificultad": 0.2,
+    "enunciado": "Escribe la fecha 'el 3 de febrero de 2024' en formato ISO 8601 (AAAA-MM-DD). Responde solo con la fecha.",
+    "solucion": {"acciones": [], "respuesta": "2024-02-03"},
+    "errores": [
+      {"modo": "respuesta_incorrecta", "peso": 2, "respuesta": "2024-03-02"},
+      {"modo": "formato", "peso": 2, "respuesta": "03/02/2024"}
+    ],
+    "graders": [
+      {"tipo": "regex", "patron": "\\d{4}-\\d{2}-\\d{2}"},
+      {"tipo": "exacto", "esperado": "2024-02-03", "normalizar": ["espacios"]}
+    ]
+  },
+  {
+    "id": "fs-01",
+    "tipo": "archivos",
+    "dificultad": 0.5,
+    "enunciado": "Mueve todos los ficheros .log de /proyecto a la carpeta /proyecto/archivo/ sin tocar el resto de ficheros.",
+    "fs_inicial": {
+      "/proyecto/a.log": "INFO arranque\nERROR fallo de red\n",
+      "/proyecto/b.log": "INFO todo correcto\n",
+      "/proyecto/main.py": "print('hola')\n",
+      "/proyecto/notas.txt": "pendiente: revisar logs\n"
+    },
+    "verificacion": {"herramienta": "listar", "args": {"ruta": "/proyecto"}},
+    "solucion": {
+      "acciones": [
+        {"herramienta": "listar", "args": {"ruta": "/proyecto"}},
+        {"herramienta": "mover", "args": {"origen": "/proyecto/a.log", "destino": "/proyecto/archivo/a.log"}},
+        {"herramienta": "mover", "args": {"origen": "/proyecto/b.log", "destino": "/proyecto/archivo/b.log"}}
+      ],
+      "respuesta": "Hecho: he movido a.log y b.log a /proyecto/archivo/."
+    },
+    "errores": [
+      {"modo": "exito_falso", "peso": 3,
+       "acciones": [
+         {"herramienta": "listar", "args": {"ruta": "/proyecto"}},
+         {"herramienta": "mover", "args": {"origen": "/proyecto/a.log", "destino": "/proyecto/archivo/a.log"}}
+       ],
+       "respuesta": "Hecho: he movido todos los .log a /proyecto/archivo/.",
+       "correccion": [
+         {"herramienta": "mover", "args": {"origen": "/proyecto/b.log", "destino": "/proyecto/archivo/b.log"}}
+       ]},
+      {"modo": "args_erroneos", "peso": 2,
+       "acciones": [
+         {"herramienta": "listar", "args": {"ruta": "/proyecto"}},
+         {"herramienta": "mover", "args": {"origen": "/proyecto/a.log", "destino": "/proyecto/archivos/a.log"}},
+         {"herramienta": "mover", "args": {"origen": "/proyecto/b.log", "destino": "/proyecto/archivos/b.log"}}
+       ],
+       "respuesta": "Hecho: he movido a.log y b.log a la carpeta de archivo.",
+       "correccion": [
+         {"herramienta": "mover", "args": {"origen": "/proyecto/archivos/a.log", "destino": "/proyecto/archivo/a.log"}},
+         {"herramienta": "mover", "args": {"origen": "/proyecto/archivos/b.log", "destino": "/proyecto/archivo/b.log"}}
+       ]},
+      {"modo": "bucle", "peso": 1,
+       "acciones": [{"herramienta": "listar", "args": {"ruta": "/proyecto"}}]}
+    ],
+    "graders": [
+      {"tipo": "estado_fs",
+       "existe": ["/proyecto/archivo/a.log", "/proyecto/archivo/b.log"],
+       "no_existe": ["/proyecto/a.log", "/proyecto/b.log"],
+       "intactos": ["/proyecto/main.py", "/proyecto/notas.txt"]},
+      {"tipo": "trayectoria", "max_pasos": 8}
+    ]
+  },
+  {
+    "id": "fs-02",
+    "tipo": "archivos",
+    "dificultad": 0.6,
+    "enunciado": "En /config/app.json, cambia el puerto a 9090 sin modificar el resto de claves.",
+    "fs_inicial": {
+      "/config/app.json": "{\"nombre\": \"api\", \"puerto\": 8080, \"debug\": false}"
+    },
+    "verificacion": {"herramienta": "leer", "args": {"ruta": "/config/app.json"}},
+    "solucion": {
+      "acciones": [
+        {"herramienta": "leer", "args": {"ruta": "/config/app.json"}},
+        {"herramienta": "escribir", "args": {"ruta": "/config/app.json", "contenido": "{\"nombre\": \"api\", \"puerto\": 9090, \"debug\": false}"}}
+      ],
+      "respuesta": "Listo: el puerto de /config/app.json es ahora 9090."
+    },
+    "errores": [
+      {"modo": "args_erroneos", "peso": 3,
+       "acciones": [
+         {"herramienta": "leer", "args": {"ruta": "/config/app.json"}},
+         {"herramienta": "escribir", "args": {"ruta": "/config/app.json", "contenido": "{\"puerto\": 9090}"}}
+       ],
+       "respuesta": "Listo: el puerto es ahora 9090."},
+      {"modo": "exito_falso", "peso": 2,
+       "acciones": [
+         {"herramienta": "leer", "args": {"ruta": "/config/app.json"}}
+       ],
+       "respuesta": "Listo: puerto cambiado a 9090."},
+      {"modo": "formato", "peso": 1,
+       "acciones": [
+         {"herramienta": "leer", "args": {"ruta": "/config/app.json"}},
+         {"herramienta": "escribir", "args": {"ruta": "/config/app.json", "contenido": "{\"nombre\": \"api\", \"puerto\": \"9090\", \"debug\": false}"}}
+       ],
+       "respuesta": "Listo: el puerto es ahora 9090."}
+    ],
+    "graders": [
+      {"tipo": "estado_fs",
+       "contenido_json": {"/config/app.json": {"nombre": "api", "puerto": 9090, "debug": false}}}
+    ]
+  },
+  {
+    "id": "fs-03",
+    "tipo": "archivos",
+    "dificultad": 0.5,
+    "enunciado": "Elimina todos los ficheros .tmp de /datos. Usa solo las herramientas de ficheros: está prohibido usar 'shell'.",
+    "fs_inicial": {
+      "/datos/a.tmp": "x",
+      "/datos/b.tmp": "y",
+      "/datos/c.tmp": "z",
+      "/datos/informe.csv": "mes,ventas\nenero,120\n"
+    },
+    "verificacion": {"herramienta": "listar", "args": {"ruta": "/datos"}},
+    "solucion": {
+      "acciones": [
+        {"herramienta": "listar", "args": {"ruta": "/datos"}},
+        {"herramienta": "borrar", "args": {"ruta": "/datos/a.tmp"}},
+        {"herramienta": "borrar", "args": {"ruta": "/datos/b.tmp"}},
+        {"herramienta": "borrar", "args": {"ruta": "/datos/c.tmp"}}
+      ],
+      "respuesta": "Hecho: he borrado a.tmp, b.tmp y c.tmp."
+    },
+    "errores": [
+      {"modo": "herramienta_prohibida", "peso": 3,
+       "acciones": [
+         {"herramienta": "shell", "args": {"comando": "rm /datos/*.tmp"}}
+       ],
+       "respuesta": "Hecho: he borrado todos los .tmp.",
+       "correccion": []},
+      {"modo": "exito_falso", "peso": 2,
+       "acciones": [
+         {"herramienta": "listar", "args": {"ruta": "/datos"}},
+         {"herramienta": "borrar", "args": {"ruta": "/datos/a.tmp"}},
+         {"herramienta": "borrar", "args": {"ruta": "/datos/b.tmp"}}
+       ],
+       "respuesta": "Hecho: he borrado todos los .tmp.",
+       "correccion": [
+         {"herramienta": "borrar", "args": {"ruta": "/datos/c.tmp"}}
+       ]}
+    ],
+    "graders": [
+      {"tipo": "estado_fs",
+       "no_existe": ["/datos/a.tmp", "/datos/b.tmp", "/datos/c.tmp"],
+       "intactos": ["/datos/informe.csv"]},
+      {"tipo": "trayectoria", "herramientas_prohibidas": ["shell"]}
+    ]
+  },
+  {
+    "id": "tool-01",
+    "tipo": "herramientas",
+    "dificultad": 0.3,
+    "enunciado": "Calcula (1234 × 5678) − 999 usando la herramienta 'calculadora'. Responde solo con el número, sin separadores de miles.",
+    "solucion": {
+      "acciones": [
+        {"herramienta": "calculadora", "args": {"expresion": "1234 * 5678 - 999"}}
+      ],
+      "respuesta": "7005653"
+    },
+    "errores": [
+      {"modo": "args_erroneos", "peso": 2,
+       "acciones": [
+         {"herramienta": "calculadora", "args": {"expresion": "1234 * 5678 + 999"}}
+       ],
+       "respuesta": "7007651"},
+      {"modo": "sin_herramienta", "peso": 2, "acciones": [], "respuesta": "7005553"},
+      {"modo": "formato", "peso": 1, "respuesta": "El resultado es 7.005.653"}
+    ],
+    "graders": [
+      {"tipo": "llamada_herramienta", "herramienta": "calculadora"},
+      {"tipo": "numerico", "esperado": 7005653, "tolerancia": 0}
+    ]
+  },
+  {
+    "id": "tool-02",
+    "tipo": "herramientas",
+    "dificultad": 0.4,
+    "enunciado": "Usa la herramienta 'buscar' para averiguar en qué año se fundó la empresa ficticia Ondas del Sur S.L. Responde solo con el año.",
+    "solucion": {
+      "acciones": [
+        {"herramienta": "buscar", "args": {"consulta": "Ondas del Sur fundación"}}
+      ],
+      "respuesta": "1987"
+    },
+    "errores": [
+      {"modo": "respuesta_incorrecta", "peso": 2, "respuesta": "1978"},
+      {"modo": "sin_herramienta", "peso": 1, "acciones": [], "respuesta": "1992"},
+      {"modo": "formato", "peso": 2, "respuesta": "Fue fundada en 1987."}
+    ],
+    "graders": [
+      {"tipo": "llamada_herramienta", "herramienta": "buscar", "args_contienen": {"consulta": "Ondas del Sur"}},
+      {"tipo": "exacto", "esperado": "1987", "normalizar": ["espacios", "puntuacion_final"]}
+    ]
+  }
+]
