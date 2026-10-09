@@ -100,7 +100,7 @@ def imprimir_transcript(resultados: list[dict], tarea_id: str) -> None:
         print(f"  {i:>2} {rama}{ev['tipo']:<22} {texto}")
     print("  Graders:")
     for g in elegido["graders"]:
-        print(f"    {'PASA' if g['aprobado'] else 'FALLA'}  {g['nombre']:<20} {g['detalle']}")
+        print(f"    {'PASA' if g['aprobado'] else 'FALLA':<6}{g['nombre']:<20} {g['detalle']}")
 
 
 def main() -> None:
