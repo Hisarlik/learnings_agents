@@ -27,7 +27,7 @@ python --version                   # 3.10 o superior
 
 # Opcional, solo para el laboratorio 3 con juez real:
 pip install -r lab03_llm_juez/requirements.txt
-export ANTHROPIC_API_KEY=...        # y opcionalmente: export MODELO_JUEZ=claude-sonnet-4-5
+export ANTHROPIC_API_KEY=...        # y además: export MODELO_JUEZ=<id-del-modelo>
 
 # Opcional, solo para el laboratorio 5:
 pip install -r lab05_inspect_ai/requirements.txt
@@ -61,7 +61,7 @@ python curvas_passk.py
 
 # Lab 5: Inspect AI (requiere Docker y API key)
 cd ../lab05_inspect_ai
-inspect eval tarea_ctf.py --model anthropic/claude-sonnet-4-5
+inspect eval tarea_ctf.py --model anthropic/<id-del-modelo>
 inspect view
 ```
 

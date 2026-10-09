@@ -3,9 +3,9 @@
 REQUISITOS: Docker en marcha y una API key del proveedor del modelo.
 
 Ejecución:
-    inspect eval tarea_ctf.py --model anthropic/claude-sonnet-4-5
-    inspect eval tarea_ctf.py@ctf_mini_react --model anthropic/claude-sonnet-4-5
-    inspect eval tarea_ctf.py --model anthropic/claude-sonnet-4-5 --epochs 3 \
+    inspect eval tarea_ctf.py --model anthropic/<id-del-modelo>
+    inspect eval tarea_ctf.py@ctf_mini_react --model anthropic/<id-del-modelo>
+    inspect eval tarea_ctf.py --model anthropic/<id-del-modelo> --epochs 3 \
         --epochs-reducer mean,max,at_least_3
     inspect view          # visor web de los logs (transcripts, puntuaciones, tokens)
 

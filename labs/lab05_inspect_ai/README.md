@@ -34,15 +34,15 @@ pip install -r requirements.txt
 docker info                                   # comprueba que Docker responde
 export ANTHROPIC_API_KEY=...
 
-inspect eval tarea_ctf.py --model anthropic/claude-sonnet-4-5          # tarea ctf_mini
-inspect eval tarea_ctf.py@ctf_mini_react --model anthropic/claude-sonnet-4-5
-inspect eval tarea_ctf.py@ctf_mini_fiabilidad --model anthropic/claude-sonnet-4-5
-inspect eval tarea_ctf.py --model anthropic/claude-sonnet-4-5 --epochs 5 --epochs-reducer mean,max,at_least_5
+inspect eval tarea_ctf.py --model anthropic/<id-del-modelo>          # tarea ctf_mini
+inspect eval tarea_ctf.py@ctf_mini_react --model anthropic/<id-del-modelo>
+inspect eval tarea_ctf.py@ctf_mini_fiabilidad --model anthropic/<id-del-modelo>
+inspect eval tarea_ctf.py --model anthropic/<id-del-modelo> --epochs 5 --epochs-reducer mean,max,at_least_5
 
 inspect view                                  # abre el visor de logs en el navegador
 ```
 
-Sustituye `claude-sonnet-4-5` por el modelo que quieras evaluar (cualquier proveedor soportado por
+Sustituye `<id-del-modelo>` por el modelo que quieras evaluar (cualquier proveedor soportado por
 Inspect). Los nombres de parámetros pueden cambiar entre versiones: si algo falla, consulta
 `inspect eval --help` y la documentación de tu versión.
 

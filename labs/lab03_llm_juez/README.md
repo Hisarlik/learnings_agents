@@ -26,7 +26,7 @@ python calibrar.py --simulado --pareado         # sin API key (juez heurístico,
 
 pip install -r requirements.txt                 # para el juez real
 export ANTHROPIC_API_KEY=...
-export MODELO_JUEZ=claude-sonnet-4-5            # opcional (este es el valor por defecto)
+export MODELO_JUEZ=<id-del-modelo>              # obligatorio con el juez real
 python calibrar.py --pareado
 python calibrar.py --reusar                     # recalcula métricas sin volver a llamar a la API
 ```

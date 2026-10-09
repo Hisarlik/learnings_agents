@@ -2,8 +2,8 @@
 
 Modos de funcionamiento:
 * REAL: si existe la variable ANTHROPIC_API_KEY y está instalado el paquete
-  ``anthropic``, llama a la Messages API con el modelo de MODELO_JUEZ
-  (por defecto "claude-sonnet-4-5").
+  ``anthropic``, llama a la Messages API con el modelo indicado en la
+  variable de entorno MODELO_JUEZ (obligatoria en ese modo).
 * SIMULADO: si no, usa un juez heurístico determinista y lo avisa claramente.
   El juez heurístico es deliberadamente imperfecto (busca números y nombres
   propios en las fuentes) para que la calibración tenga algo que enseñar.
@@ -21,7 +21,6 @@ import os
 import re
 import sys
 
-MODELO_POR_DEFECTO = "claude-sonnet-4-5"
 
 CRITERIOS = {
     "responde": "¿La respuesta contesta directamente a la pregunta (o, si las fuentes no contienen la "
@@ -128,7 +127,9 @@ class JuezLLM:
         import anthropic
 
         self.cliente = anthropic.Anthropic()  # lee ANTHROPIC_API_KEY del entorno
-        self.modelo = modelo or os.environ.get("MODELO_JUEZ", MODELO_POR_DEFECTO)
+        self.modelo = modelo or os.environ.get("MODELO_JUEZ")
+        if not self.modelo:
+            raise SystemExit("Define MODELO_JUEZ con el id exacto del modelo juez (o quita ANTHROPIC_API_KEY para usar el juez simulado).")
         self.nombre = f"llm:{self.modelo}"
 
     def _llamar(self, prompt: str) -> str:

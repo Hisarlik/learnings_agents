@@ -72,7 +72,7 @@ Con `con_verificacion` la tasa sube a 0,817 y el coste por ensayo pasa de 0,0063
    cada columna sobre si pondrías este agente en producción?
 2. Ejecuta con `--seed 0` y con `--seed 1..3`. En la semilla 0 el EE agrupado sale *menor* que el
    ingenuo; en las otras, mayor. ¿Por qué puede pasar con solo 12 tareas? ¿Cuál deberías reportar?
-3. `tool-01` falla a veces con "no es un número: 'El resultado es 7.005.653'". ¿Es un fallo del agente
+3. Con `--seed 5 --ver tool-01`, `tool-01` falla con "no es un número: 'El resultado es 7.005.653'" aunque el agente usó bien la calculadora. ¿Es un fallo del agente
    o del grader? Argumenta según el enunciado de la tarea.
 4. Con `--compartir-entorno`, `fs-03` pasa de 2/5 a 3/5 sin que el agente haya mejorado. Explica por qué
    leyendo el transcript (`--ver fs-03`).
